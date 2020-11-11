@@ -8,23 +8,23 @@
 
 An efficient hiring process saves a business time and money. Better hiring decisions mean less turnover. However to hire good and qualified candidates or to even attract good candidates for an interview, businesses need to ensure that they have a robust interview and hiring process.
 
-I am a HR consultant and I was approached by a tech company to review their interview and hiring process. The client wants to give candidates the best interview experience regardless of whether they were accepted for the job. By doing so, they hope to achieve more positive interview reviews, strengthen the company branding and ultimately attract more talent.
+I am a HR consultant and I was approached by a company to review their interview and hiring process. The client wants to give candidates the best interview experience regardless of whether they were accepted for the job. By doing so, they hope to achieve more positive interview reviews, strengthen the company branding and ultimately attract more talent.
 
-The client have consolidated a list of interview feedback from interviewees. They have requested my team's help to analyse that feedback and find out how can they improve on their current interview process and give candidates the best interview experience.
+The client have consolidated a list of interview feedback from previous interviewees and have requested my team's help to analyse the feedback and find out how can they improve on their current interview process and give candidates the best interview experience.
 
 # ![](./images/feedback_input.png)
 
 ## Executive Summary
 
-To better improve their company branding and attract quality candidates for job openings, my client decides to improve their hiring process. To better understand how candidates feel about their interview, my client has surveyed their interview candidates and gotten anonymous feedback on the entire process. My client has requested my help to analyse the feedback and find out how they can improve on their current interview process and give candidates the best interview experience.
+To better improve their company branding and attract quality candidates for job openings, my client decides to improve their hiring process. In order to do so, my client wants to better understand how candidates feel about their interview. Hence they got anonymous feedback from interviewees. My client has then requested my help to analyse the feedback and find out how they can improve on their current interview process and give candidates the best interview experience.
 
-The goal of this project is to help the business identify a positive or negative interview experience as reviewed by the interviewee. By analysing companies with thousands of interview reviews on glassdoor, my team and I has built a model that can analyse the sentiments of a review and provide feedback to the company.
+The goal of this project is to help the business identify a positive or negative interview experience as reviewed by the interviewee. By analysing companies with thousands of interview reviews on glassdoor, my team and I have built a model that can analyse the sentiments of a review and provide feedback to the company.
 
-With this model, businesses will be able to tell if a reviewer has a positive or negative interview experience as an interviewee. Businesses can then use the insights to train their HR and hiring managers to adopt or avoid certain attributes during an interview as to give the interviewee the best interview experience.
+With this model, businesses will be able to tell if a reviewer has a positive or negative interview experience. Businesses can then use the insights to train their HR and hiring managers to adopt or avoid certain attributes during an interview so as to give the candidate the best interview experience.
 
-We want to learn from both positive and negative interview experiences so as to adopt or avoid certain traits of an interview process. As we want to learn from both experiences and we have a rather imbalanced dataset, we optimize our model based on the accuracy score and ROC-AUC score.
+We want to learn from both positive and negative interview experiences so as to adopt or avoid certain traits of an interview process. As we have a rather imbalanced dataset and want to learn from both experiences, we optimize our model based on the accuracy score and ROC-AUC score.
 
-We have trained several models and optimized our paramters based on accuracy score. Eventually, we decided to go with the logistic regression model. We chosen the logistic regression model due to the high accuracy and ROC-AUC score. It is also one of the model that doesnt exhibit overfitting.
+We have trained several models and optimized our paramters based on accuracy score. Eventually, we decided to go with the logistic regression model due to the high accuracy and ROC-AUC score. It is also one of the model that does not overfit.
 
 On unseen data, our model has a 76.06% accuracy score, 88.95% sensitivity, 62.9% specificity and 81.43% roc-auc score. Our model is able to distinguish between positive and negative sentiments generally well.
 
@@ -56,7 +56,7 @@ Our client can use the model predictions and its findings to train their HR and 
 
 Scrapped glassdoor website interview reviews with python, selenium and headless chrome.
 Scraped the offer result, interview difficulty, interview review, interview questions and interview experience (label)
-# ![](./images/glassdoor_webscrape.png)
+# ![](./images/glassdoor_webscrape.PNG)
 Looking at the distribution of reviews, Amazon has the highest number of reviews from candidates. As we look into the types rating for interview experience of each company, we notice that most interview experiences are positive.
 # ![](./images/interview_exp_diff_companies.png)
 As expected, when someone was offered and accepted it, most likely the interview experience was good and hence a high proportion of positive experience is seen under accepted offer.
@@ -78,7 +78,7 @@ Looking at the heatmap, the feature with the highest correlation with interview 
 # ![](./images/positive_wordcloud.png)
 
 **Pre-processing Words**
-# ![](./images/preprocessing_words.png)
+# ![](./images/preprocessing_words.PNG)
 Interview reviews are then preprocessed before modelling:
  - Removed all the swear words and flags, emojis, html text etc,
  - Convert all words to lower case
@@ -139,17 +139,18 @@ Hyperparameters:
  - penalty = 'l2'
  - solver = 'liblinear'
 
-# ![](./images/rou_auc.png)
+# ![](./images/roc_auc.png)
 ---
 
 ## Insights and Findings
  
-# ![](./images/corr_negwords.png)
 Some example of words highly correlated to negative experience:
 Unprofessional, rude, never heard, waste, not friendly, late, condescending, ghosted, disorganized, impersonal, waste time, rushed, cancelled, awkward, reason, wasted, irrelevant
-# ![](./images/corr_poswords.png)
+# ![](./images/corr_negwords.png)
+
 Some example of words highly correlated to positive experience:
 Friendly, fun, smooth, relaxed, patient, like conversation, polite, minute long, hangout, casual, professional, receive email, efficient, prompt, straightforward.
+# ![](./images/corr_poswords.png)
 
 ## Negative Shopee Interview Reviews
 - The entire interview process was very disrespectful. They don't ask for your free time and simply give you a time. During the interview, they can be up to 30 minutes late! They don't seem to have much good things to say about the company too. A senior manager said work environment is very stressful. 
