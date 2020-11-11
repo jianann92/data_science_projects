@@ -78,7 +78,6 @@ Looking at the heatmap, the feature with the highest correlation with interview 
 # ![](./images/positive_wordcloud.png)
 
 **Pre-processing Words**
-
 # ![](./images/preprocessing_words.png)
 Interview reviews are then preprocessed before modelling:
  - Removed all the swear words and flags, emojis, html text etc,
