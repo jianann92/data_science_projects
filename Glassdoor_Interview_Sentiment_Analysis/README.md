@@ -52,7 +52,7 @@ Our client can use the model predictions and its findings to train their HR and 
 
 ---
 
-**Exploratory Data Analysis**
+## Exploratory Data Analysis
 
 Scrapped glassdoor website interview reviews with python, selenium and headless chrome.
 Scraped the offer result, interview difficulty, interview review, interview questions and interview experience (label)
@@ -77,7 +77,7 @@ Looking at the heatmap, the feature with the highest correlation with interview 
 **Word cloud of positivereview based on Term frequency - inverse document frequency**
 # ![](./images/positive_wordcloud.png)
 
-**Pre-processing Words**
+## Pre-processing Words
 # ![](./images/preprocessing_words.PNG)
 Interview reviews are then preprocessed before modelling:
  - Removed all the swear words and flags, emojis, html text etc,
@@ -85,23 +85,23 @@ Interview reviews are then preprocessed before modelling:
  - Lemmatizing each word
  - Removing words with less than 2 characters
 
-**Model Execution**
+## Model Execution
 
-Train / Validation Split
+**Train / Validation Split**
  - Splitted the Supervised data set to 90% - 10% where 90% is used for training the model and 10% is used for supervised testing
  - We tuned the hyperparameters using train set and optimized our results based on accuracy
  - Both count vectorizer and Tfidf vectorizer were used for comparison
 
-Benchmark model
+**Benchmark model**
  - K Nearest Neighbor model as benchmark
 
-Model selection
+**Model selection**
  - Multinomial Naive Bayes Model
  - Logistic Regression Model
  - Random Forest Classifier Model
  - XGBoost Classifier Model
 
-Assessment
+**Assessment**
  - Test models with Accuracy and ROC-AUC score
 
 | Model| Train's Acc| Val Acc| Score Difference|Sensitivity|Specificity|Validation's ROC_AUC
@@ -122,7 +122,7 @@ Looking at the scores for all models, it appears that top performing model is th
 
 ---
 
-## Final Model on unseen shopee data
+**Final Model on unseen shopee data**
 
 # ![](./images/glassdoor_shopee.png)
 
@@ -130,7 +130,7 @@ Looking at the scores for all models, it appears that top performing model is th
 |----|---- |----  |---- |----|----|
 | Logistic Regression|0.7606|0.8895|0.629|0.7897|0.8143
 
-Hyperparameters:
+**Hyperparameters:**
  - max_df = 0.9,
  - max_features = 240000,
  - min_df = 2,
@@ -152,7 +152,7 @@ Some example of words highly correlated to positive experience:
 Friendly, fun, smooth, relaxed, patient, like conversation, polite, minute long, hangout, casual, professional, receive email, efficient, prompt, straightforward.
 # ![](./images/corr_poswords.png)
 
-## Negative Shopee Interview Reviews
+**Negative Shopee Interview Reviews**
 - The entire interview process was very disrespectful. They don't ask for your free time and simply give you a time. During the interview, they can be up to 30 minutes late! They don't seem to have much good things to say about the company too. A senior manager said work environment is very stressful. 
 
 - Took less than 10 mins after waiting for more than a half-hour. The recruiter seemed very tired. She was working with her laptop while I introduce myself and didn't even give a glance. She didn't ask any work-relevant questions. 
@@ -163,7 +163,7 @@ Friendly, fun, smooth, relaxed, patient, like conversation, polite, minute long,
 
 - Phone interview, sent me an email to schedule phone interview. Sent email afterwards to ask why I didn't get the role and if there's anything I can work on. Did not get a reply.
 
-## Positive Shopee Interview Reviews
+**Positive Shopee Interview Reviews**
 - The recruiter is very nice and she will explain to you how the company views the most for this position. Phone interview is not difficult and then she directly gives me the chance for a 2nd round test interview. The test interview is about 1.5 hrs and the Python&SQL questions are very basic. 
 
 - Phone interview with HR first then direct interview with the cat managers. both interviews were quite fast, within 30 minutes, i think the phone interview was shorter and the hr person was very friendly 
