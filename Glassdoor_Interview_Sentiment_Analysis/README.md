@@ -53,6 +53,7 @@ Our client can use the model predictions and its findings to train their HR and 
 ---
 
 **Exploratory Data Analysis**
+
 Scrapped glassdoor website interview reviews with python, selenium and headless chrome.
 Scraped the offer result, interview difficulty, interview review, interview questions and interview experience (label)
 # ![](./images/glassdoor_webscrape.png)
@@ -65,7 +66,7 @@ This means we the interview experience can also be positive if one was not offer
 # ![](./images/exp_outcome.png)
 # ![](./images/exp_difficulty.png)
 When analysing interview review, we count the length of each reviews and found out that both negative and positive reviews have around the same distribution shape where most of reviews in both classes are around 200 words. That is where you see the peak of both histograms. The reason why the count of negative class is much lower is due to the highly imbalaced class.
-# ![](./images/histogram_word_county.png)
+# ![](./images/histogram_word_count.png)
 Looking at the heatmap, the feature with the highest correlation with interview experience is 'offer'. However the value is not strong and we will proceed to analyse each review to find out more about what gives a positive interview experience and what gives a negative one.Looking at the heatmap, the feature with the highest correlation with interview experience is 'offer'. However the value is not strong and we will proceed to analyse each review to find out more about what gives a positive interview experience and what gives a negative one.
 # ![](./images/heatmap_correlation.png)
  - Subjective sentences generally refer to personal opinion, emotion or judgment whereas objective refers to factual information.
@@ -76,11 +77,21 @@ Looking at the heatmap, the feature with the highest correlation with interview 
 **Word cloud of positivereview based on Term frequency - inverse document frequency**
 # ![](./images/positive_wordcloud.png)
 
+**Pre-processing Words**
+
+# ![](./images/preprocessing_words.png)
+Interview reviews are then preprocessed before modelling:
+ - Removed all the swear words and flags, emojis, html text etc,
+ - Convert all words to lower case
+ - Lemmatizing each word
+ - Removing words with less than 2 characters
+
 **Model Execution**
 
 Train / Validation Split
  - Splitted the Supervised data set to 90% - 10% where 90% is used for training the model and 10% is used for supervised testing
  - We tuned the hyperparameters using train set and optimized our results based on accuracy
+ - Both count vectorizer and Tfidf vectorizer were used for comparison
 
 Benchmark model
  - K Nearest Neighbor model as benchmark
@@ -119,13 +130,27 @@ Looking at the scores for all models, it appears that top performing model is th
 | Production Model|Result Acc|Sensitivity|Specificity|f1 score|ROC_AUC
 |----|---- |----  |---- |----|----|
 | Logistic Regression|0.7606|0.8895|0.629|0.7897|0.8143
+
+Hyperparameters:
+ - max_df = 0.9,
+ - max_features = 240000,
+ - min_df = 2,
+ - ngram_range = (1, 2)
+ - C = 10
+ - penalty = 'l2'
+ - solver = 'liblinear'
+
 # ![](./images/rou_auc.png)
 ---
 
 ## Insights and Findings
  
 # ![](./images/corr_negwords.png)
+Some example of words highly correlated to negative experience:
+Unprofessional, rude, never heard, waste, not friendly, late, condescending, ghosted, disorganized, impersonal, waste time, rushed, cancelled, awkward, reason, wasted, irrelevant
 # ![](./images/corr_poswords.png)
+Some example of words highly correlated to positive experience:
+Friendly, fun, smooth, relaxed, patient, like conversation, polite, minute long, hangout, casual, professional, receive email, efficient, prompt, straightforward.
 
 ## Negative Shopee Interview Reviews
 - The entire interview process was very disrespectful. They don't ask for your free time and simply give you a time. During the interview, they can be up to 30 minutes late! They don't seem to have much good things to say about the company too. A senior manager said work environment is very stressful. 
