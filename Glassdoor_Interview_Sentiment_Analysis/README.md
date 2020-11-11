@@ -77,6 +77,11 @@ Looking at the heatmap, the feature with the highest correlation with interview 
 **Word cloud of positivereview based on Term frequency - inverse document frequency**
 # ![](./images/positive_wordcloud.png)
 
+## Dealing with imbalanced classes
+ - We have 21079 positive reviews and 4762 negative reviews
+ - To deal with this imbalanced class, we scrapped more data from other company profiles on glassdoor
+ - After scrapping additional data, we managed to increase our minority class to 11800.
+
 ## Pre-processing Words
 # ![](./images/preprocessing_words.PNG)
 Interview reviews are then preprocessed before modelling:
@@ -179,11 +184,14 @@ Review : 'They have a very extensive hiring process, I had to go through multipl
 
 After the model predicted the results, there is still a need for someone to review and validate if certain predictions makes sense. One example is the one above where the reviewer mentioned that the hiring process was extensive and there were multiple rounds, however the process was fast. Perhaps our model picked up more negativity than positivity and as such gave it a negative sentiment as prediction.
 
-As for the limitations, our model is fitted with sentences that were scrapped from glassdoor only. As such, the model analysis is limited to the corpus of texts obtained. Any words that are new to the corpus will not be considered when doing vectorizing transformation and prediction. Another limitation is that our model is only able to pick up english words. If the review is in another language, our model is not able to accurately predict the sentiment.
+As for the limitations, our model is fitted with sentences that were scrapped from glassdoor only. As such, the model analysis is limited to the corpus of texts obtained. Any words that are new to the corpus will not be considered when doing vectorizing transformation and prediction. Another limitation is that our model is only able to pick up english words. If the review is in another language, our model is not able to accurately predict the sentiment. Sarcasm within a review might result in inaccurate prediction.
 
 Our logistic model assumes linear separability between different texts. However, in reality, texts or comments are not exactly linearly separable. At the same time, Naive Bayes model assumes independence between features. Texts or comments may not be independent in fact
 
 Our analysis is limited to the generic positive or negative experience and some of the key words with high coefficients tend to be very subjective and scalable. For instance, nice is the word that has the highest coefficient for positive experience, however it is very subjective and there are too many variations of nice.
+
+## Conclusion
+Any company who have collected feedback from interviewees and want to understand the sentiments and gather insights can adopt this model. They will be able to analyse feedback gathered from interviewees, and find out areas that they can improvement on. That will probably help them achieve a higher positive interview experience rating on their public profiles, achieve a better company brand and attract more talent.
 
 ---
 ## Data Sources
