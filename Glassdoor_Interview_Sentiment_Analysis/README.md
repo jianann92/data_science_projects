@@ -54,8 +54,8 @@ Our client can use the model predictions and its findings to train their HR and 
 
 ## Exploratory Data Analysis
 
-Scrapped glassdoor website interview reviews with python, selenium and headless chrome.
-Scraped the offer result, interview difficulty, interview review, interview questions and interview experience (label)
+Scrapped Apple, Microsoft, Facebook, Google and Amazon glassdoor profiles for interview reviews. Web scrapped with python, selenium and headless chrome.
+Scraped offer outcome, interview difficulty, interview review, interview questions and interview experience (label)
 # ![](./images/glassdoor_webscrape.PNG)
 Looking at the distribution of reviews, Amazon has the highest number of reviews from candidates. As we look into the types rating for interview experience of each company, we notice that most interview experiences are positive.
 # ![](./images/interview_exp_diff_companies.png)
@@ -152,7 +152,7 @@ Some example of words highly correlated to positive experience:
 Friendly, fun, smooth, relaxed, patient, like conversation, polite, minute long, hangout, casual, professional, receive email, efficient, prompt, straightforward.
 # ![](./images/corr_poswords.png)
 
-**Negative Shopee Interview Reviews**
+**Examples of Negative Shopee Interview Reviews**
 - The entire interview process was very disrespectful. They don't ask for your free time and simply give you a time. During the interview, they can be up to 30 minutes late! They don't seem to have much good things to say about the company too. A senior manager said work environment is very stressful. 
 
 - Took less than 10 mins after waiting for more than a half-hour. The recruiter seemed very tired. She was working with her laptop while I introduce myself and didn't even give a glance. She didn't ask any work-relevant questions. 
@@ -163,7 +163,7 @@ Friendly, fun, smooth, relaxed, patient, like conversation, polite, minute long,
 
 - Phone interview, sent me an email to schedule phone interview. Sent email afterwards to ask why I didn't get the role and if there's anything I can work on. Did not get a reply.
 
-**Positive Shopee Interview Reviews**
+**Examples of Positive Shopee Interview Reviews**
 - The recruiter is very nice and she will explain to you how the company views the most for this position. Phone interview is not difficult and then she directly gives me the chance for a 2nd round test interview. The test interview is about 1.5 hrs and the Python&SQL questions are very basic. 
 
 - Phone interview with HR first then direct interview with the cat managers. both interviews were quite fast, within 30 minutes, i think the phone interview was shorter and the hr person was very friendly 
