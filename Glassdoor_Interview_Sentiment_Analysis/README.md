@@ -53,14 +53,27 @@ Our client can use the model predictions and its findings to train their HR and 
 ---
 
 **Exploratory Data Analysis**
+Scrapped glassdoor website interview reviews with python, selenium and headless chrome.
+Scraped the offer result, interview difficulty, interview review, interview questions and interview experience (label)
 # ![](./images/glassdoor_webscrape.png)
+Looking at the distribution of reviews, Amazon has the highest number of reviews from candidates. As we look into the types rating for interview experience of each company, we notice that most interview experiences are positive.
 # ![](./images/interview_exp_diff_companies.png)
+As expected, when someone was offered and accepted it, most likely the interview experience was good and hence a high proportion of positive experience is seen under accepted offer.
+Interestingly enough, despite no offer or declined offer, both outcomes has high positive experience over negative and neutral experience.
+Next, we visualize the difficulty of the interview with respect to the different kind of interview experience. Even for a difficult interview, the number of positive interview experience remains high for these companies.
+This means we the interview experience can also be positive if one was not offered the job or if one rejected an offer.
 # ![](./images/exp_outcome.png)
 # ![](./images/exp_difficulty.png)
+When analysing interview review, we count the length of each reviews and found out that both negative and positive reviews have around the same distribution shape where most of reviews in both classes are around 200 words. That is where you see the peak of both histograms. The reason why the count of negative class is much lower is due to the highly imbalaced class.
 # ![](./images/histogram_word_county.png)
+Looking at the heatmap, the feature with the highest correlation with interview experience is 'offer'. However the value is not strong and we will proceed to analyse each review to find out more about what gives a positive interview experience and what gives a negative one.Looking at the heatmap, the feature with the highest correlation with interview experience is 'offer'. However the value is not strong and we will proceed to analyse each review to find out more about what gives a positive interview experience and what gives a negative one.
 # ![](./images/heatmap_correlation.png)
+ - Subjective sentences generally refer to personal opinion, emotion or judgment whereas objective refers to factual information.
+ - Polarity is float which lies in the range of [-1,1] where 1 means positive statement and -1 means a negative statement
 # ![](./images/textblob_sentiments.png)
+**Word cloud of negative review based on Term frequency - inverse document frequency**
 # ![](./images/negative_wordcloud.png)
+**Word cloud of positivereview based on Term frequency - inverse document frequency**
 # ![](./images/positive_wordcloud.png)
 
 **Model Execution**
@@ -76,7 +89,6 @@ Model selection
  - Multinomial Naive Bayes Model
  - Logistic Regression Model
  - Random Forest Classifier Model
- - SVM Classifier Model
  - XGBoost Classifier Model
 
 Assessment
@@ -84,10 +96,9 @@ Assessment
 
 | Model| Train's Acc| Val Acc| Score Difference|Sensitivity|Specificity|Validation's ROC_AUC
 |----|----|----|----|----|----|----|
-| K Nearest Neighbor (Baseline)|0.7534|0.67609|0.07731|0.9412|0.2025|0.6402
+| K Nearest Neighbor (Benchmark)|0.7534|0.67609|0.07731|0.9412|0.2025|0.6402
 | Multinomial Naive Bayes|0.8243|0.8239|0.0004|0.8833|0.7178|0.8791
 | Logistic Regression|0.8337|0.8349|-0.0011|0.9018|0.7152|0.8978
-| Support Vector Machine||| | ||
 | Random Forest|0.7803|0.785|-0.0046|0.8254|0.7127|0.8487
 | XGBoost|0.7298|0.7293|0.0005|0.9957|0.2533|0.8637
 
@@ -95,7 +106,7 @@ Since employers want to find out what are the factors of an interview process th
 
 The production model will have a accuary and ROC-AUC closest to 1 among all other models. For our optimization parameter, accuracy was selected as we want value both positive and negative sentiment findings. We also based our selection on ROC-AUC score as we do not have a balanced dataset.
 
-We have trained and fitted k nearest neighbor model as benchmark model and multinomial naive bayes, logistic regression, support vector classifier, random forest classifier and XGBoost classifier.
+We have trained and fitted k nearest neighbor model as benchmark model and multinomial naive bayes, logistic regression, random forest classifier and XGBoost classifier.
 
 Looking at the scores for all models, it appears that top performing model is the Logistic regression model. It out performs the benchmark for both accuracy and ROC-AUC scores. The model does not over fit as the train accuracy does not out weigh the validation accuracy. The closest model to the logistic regression is the multinomial naive bayes. The accuracy and AUC-ROC socre of the logistic regression is very close to the logistic regression model.
 
@@ -115,14 +126,6 @@ Looking at the scores for all models, it appears that top performing model is th
  
 # ![](./images/corr_negwords.png)
 # ![](./images/corr_poswords.png)
- 
-Results are as follows:
-  - 1 unit change in Overall Qual leads to approximately 10820.978792853928 change in SalePrice
-  - 1 unit change in Exter Qual leads to approximately 4685.020657317706 change in SalePrice
-  - 1 unit change in Kitchen Qual leads to approximately 6698.188331313283 change in SalePrice
-  - 1 unit change in Total Bsmt SF leads to approximately 28.325894480552776 change in SalePrice
-  - 1 unit change in Gr Liv Area leads to approximately 49.308528164149735 change in SalePrice
-  - 1 unit change in Garage Area leads to approximately 12.805701398084716 change in SalePrice
 
 ## Negative Shopee Interview Reviews
 - The entire interview process was very disrespectful. They don't ask for your free time and simply give you a time. During the interview, they can be up to 30 minutes late! They don't seem to have much good things to say about the company too. A senior manager said work environment is very stressful. 
@@ -146,10 +149,10 @@ Results are as follows:
 
 Review : 'They have a very extensive hiring process, I had to go through multiple interviews for an entry-level position. However, the process for my case was fast, the interview intervals happened in the span of a week or immediately the next day.'
 
-Actual Sentiment : Positive Experience
-Model Predicts : Negative Experience
+ - Actual Sentiment : Positive Experience
+ - Model Predicts : Negative Experience
 
-After the model predicts the results, there is still a need for someone to review and validate if certain predictions makes sense. One example is the one above where the reviewer mentioned that the hiring process was extensive and there were multiple rounds, however the process was fast. Perhaps our model picked up more negativity than positivity and as such gave it a negative sentiment as prediction.
+After the model predicted the results, there is still a need for someone to review and validate if certain predictions makes sense. One example is the one above where the reviewer mentioned that the hiring process was extensive and there were multiple rounds, however the process was fast. Perhaps our model picked up more negativity than positivity and as such gave it a negative sentiment as prediction.
 
 As for the limitations, our model is fitted with sentences that were scrapped from glassdoor only. As such, the model analysis is limited to the corpus of texts obtained. Any words that are new to the corpus will not be considered when doing vectorizing transformation and prediction. Another limitation is that our model is only able to pick up english words. If the review is in another language, our model is not able to accurately predict the sentiment.
 
